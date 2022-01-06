@@ -12,10 +12,10 @@ public class DeployAndStartInstance {
 
   public static void main(String[] args) {
     try (ZeebeClient client = ZeebeClientFactory.getZeebeClient()) {
-      client.newDeployCommand()
+/*      client.newDeployCommand()
           .addResourceFromClasspath("send-email.bpmn")
           .send()
-          .join();
+          .join();*/
 
       final ProcessInstanceEvent event = client.newCreateInstanceCommand()
           .bpmnProcessId("send-email")
