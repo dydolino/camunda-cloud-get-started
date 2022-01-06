@@ -11,14 +11,16 @@ public class DeployAndStartInstance {
   private static final Logger LOG = LogManager.getLogger(DeployAndStartInstance.class);
 
   public static void main(String[] args) {
+    for (int i=1; i<=1000; i++){
     try (ZeebeClient client = ZeebeClientFactory.getZeebeClient()) {
 /*      client.newDeployCommand()
           .addResourceFromClasspath("send-email.bpmn")
           .send()
           .join();*/
 
+
       final ProcessInstanceEvent event = client.newCreateInstanceCommand()
-          .bpmnProcessId("send-email")
+          .bpmnProcessId("Process_Taskprocess")
           .latestVersion()
           .variables(Map.of("message_content", "Hello from the Java get started"))
           .send()
@@ -30,4 +32,5 @@ public class DeployAndStartInstance {
           event.getProcessInstanceKey());
     }
   }
+}
 }
